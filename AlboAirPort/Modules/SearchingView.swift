@@ -9,47 +9,54 @@ import SwiftUI
 
 struct SearchingView: View {
     @State private var searchText = ""
-   // @State var viewModel: // aqui va el modelo
+    @State private var isSearching: Bool? = false
+    // @State var viewModel: // aqui va el modelo
     
     var body: some View {
-        
-        VStack {
-           
-            Text("Airport Search")
-                            .font(.title)
-                            .padding()
-          
-            TextField("Search", text: $searchText)
-                .padding()
-                .background(Color(.systemGray5))
-                .cornerRadius(10)
-                .padding(.horizontal)
+        NavigationView{
             
-            Button(action: {
-                // Aquí puedes agregar la lógica para realizar la búsqueda
-                print("Realizar búsqueda")
-            }) {
-            
-                Text("Search")
-                    .foregroundColor(.white)
+            VStack {
+                
+                Text("Airport Search")
+                    .font(.title)
                     .padding()
-                    .background(Color.blue)
+                
+                TextField("Enter country", text: $searchText)
+                    .padding()
+                    .background(Color(.systemGray5))
                     .cornerRadius(10)
                     .padding(.horizontal)
-            
                 
+                NavigationLink(destination: mapContentView(), tag: true, selection: $isSearching) {
+                                    EmptyView()
+                }
+                .padding()
+                Button(action: {
+                    isSearching = true
+                    // Aquí puedes agregar la lógica para realizar la búsqueda
+                    print("Realizar búsqueda")
+                }) {
+                    
+                    Text("Search")
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                        .padding(.horizontal)
+                    
+                    
+                }
             }
         }
     }
 }
-
-
-struct SearchingView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchingView()
+    
+    struct SearchingView_Previews: PreviewProvider {
+        static var previews: some View {
+            SearchingView()
+        
     }
 }
-
 
 
 //import SwiftUI
