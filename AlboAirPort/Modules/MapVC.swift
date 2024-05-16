@@ -5,6 +5,7 @@
 //  Created by daniel ortiz millan on 15/05/24.
 // este archivo es para la configuracion del mapa
 //cocoa touch
+// Aqui va la logica para pintar el mapa los resultados de la busqueda
 
 import UIKit
 import SwiftUI
@@ -28,6 +29,7 @@ class MapVC: UIViewController {
 }
 
 struct mapViewControllerBridge: UIViewControllerRepresentable{
+    
     func makeUIViewController(context: Context) -> MapVC {
         return MapVC()
     }
@@ -36,6 +38,8 @@ struct mapViewControllerBridge: UIViewControllerRepresentable{
         
         // Vista de contenido del mapa
         struct MapContentView: View {
+            
+            
             var body: some View {
                 mapViewControllerBridge()
             }

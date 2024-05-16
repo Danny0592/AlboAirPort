@@ -9,7 +9,6 @@ import SwiftUI
 import MapKit
 
 struct tabBar: View {
-    
     var query = ""
     
     var body: some View {
@@ -22,11 +21,11 @@ struct tabBar: View {
                 }
             
             // Segunda pestaña
-            ListView()
+            ListView(searchText: query)
                 .tabItem {
                     Image(systemName: "list.bullet.rectangle")
                     Text("List")
-                }
+            }
         }
     }
 }
@@ -34,13 +33,20 @@ struct tabBar: View {
 struct mapView: View {
     @ObservedObject var airportViewModel = AirportViewModel()
     @State var searchText = ""
+    
     var body: some View {
         mapViewControllerBridge()
             .onAppear {
+                
                 airportViewModel.fetchAirports(Country: searchText)
-            }
+        }
     }
 }
+//struct tabBarList: View {
+//    var body: some View {
+//        tabBar()
+//    }
+//}
 
 
 #Preview {
